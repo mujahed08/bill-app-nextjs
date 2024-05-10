@@ -1,9 +1,10 @@
 'use client'
 
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Breadcrumb from './startwith';
 import { useRouter } from 'next/navigation';
+import { get_products } from '@/apis/product';
 
 const Product: React.FC = () => {
 
@@ -15,6 +16,19 @@ const Product: React.FC = () => {
     const editProduct = (id:number = 1) => {
         router.push('/product/edit/1')
     }
+
+    const productName = 'Amol Ice cream'
+
+    // Rememeber
+    const [products, setProducts] = useState<any[]>([]);
+
+    useEffect(() => {
+
+        get_products().then((data) => {
+            setProducts(data)
+        })
+
+    }, [])
 
     return (
     <div>
@@ -48,7 +62,7 @@ const Product: React.FC = () => {
                         <tbody className="border-l border-gray-900 ">
                             <tr>
                                 <td className="ps-2 text-sm text-gray-400">Product Name</td>
-                                <td colSpan={3}>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+                                <td colSpan={3}>{productName}</td>
                             </tr>
                             <tr>
                                 <td className="ps-2 text-sm text-gray-400">Product Code</td>
@@ -72,6 +86,7 @@ const Product: React.FC = () => {
                     </table>
                 </div>
             </div>
+
             <div className="p-4 md:p-8 border-b border-gray-900 lg:hidden">
                 <div className="flex flex-col">
                     <table className="table-fixed w-full mb-4">
@@ -88,7 +103,7 @@ const Product: React.FC = () => {
                         <tbody className="border-l border-gray-900 ">
                             <tr>
                                 <td className="ps-2 text-sm text-gray-400">Product Name</td>
-                                <td colSpan={3}>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+                                <td colSpan={3}>{productName}</td>
                             </tr>
                             <tr>
                                 <td className="ps-2 text-sm text-gray-400">Product Code</td>
@@ -112,6 +127,7 @@ const Product: React.FC = () => {
                     </table>
                 </div>
             </div>
+            
             
             
             <div className="p-4 md:p-8 border-b border-gray-900 hidden lg:block">
@@ -131,7 +147,7 @@ const Product: React.FC = () => {
                     <tbody>
                         <tr className='border-y border-gray-900'>
                             <td><input type="checkbox"/></td>
-                            <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+                            <td>{productName}</td>
                             <td>Lockyer</td>
                             <td>Bags</td>
                             <td>10</td>
