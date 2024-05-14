@@ -1,8 +1,10 @@
 'use client'
 
+import { create_product } from '@/apis/product';
 import Breadcrumb from './startwith';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useRouter } from "next/navigation";
 
 type FormData = {
   product_name: string;
@@ -10,7 +12,8 @@ type FormData = {
   packing: string;
   qty : number
   unit_price : number,
-  discount : number
+  discount : number,
+  apply_discount:boolean
 };
 
 const ProductCreate: React.FC = () => {
@@ -25,15 +28,19 @@ const ProductCreate: React.FC = () => {
     defaultValues : {
       'unit_price' : 0,
       'qty' : 1,
-      'discount' : 0
+      'discount' : 0,
+      'apply_discount':true
     }
   });
+  const router = useRouter()
 
   //setValue('unit_price', 0)
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    console.log(data);
-    
+    // console.log(data);
+    const response=await create_product(data);
+    console.log(response.data);
+    router.push('/product')
   };
 
   return (
