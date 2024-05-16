@@ -48,7 +48,8 @@ const ProductEdit: React.FC = () => {
     <div>
       <Breadcrumb></Breadcrumb>
       <div className="flex flex-col items-center sm:flex-row sm:justify-center">
-          <div className="flex flex-col my-8 rounded bg-gray-800 w-5/6 md:w-3/5 drop-shadow-md">
+          <div className="px-4 w-full md:w-3/4 lg:w-3/5 md:m-8">
+          <div className="flex flex-col rounded bg-gray-800 drop-shadow-md w-full">
               <div className="p-4 sm:p-8 border-b border-gray-900">
                 <h1 className="text-2xl sm:text-4xl">Create Product</h1>
               </div>
@@ -134,7 +135,8 @@ const ProductEdit: React.FC = () => {
                 </div>
               </form>
           </div>
-      </div>
+          </div>
+        </div>
     </div>
   );
 };

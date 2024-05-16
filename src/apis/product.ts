@@ -1,8 +1,10 @@
 import axios from "axios";
 import { baseUrl } from "./constants";
 
+
 export const product_url = `${baseUrl}/products`;
 export const create_product_url=`${baseUrl}/products`
+
 
 export const get_products = async () => {
     return axios.get(product_url).then(response => {
@@ -16,6 +18,7 @@ export const get_products = async () => {
     });
 }
 
+
 export const create_product = async (payload:any) => {
     return axios.post(create_product_url, payload).then(response => {
         console.log(`SUCCESS: ${create_product_url}`)
@@ -27,3 +30,4 @@ export const create_product = async (payload:any) => {
         return Promise.reject(error);
     });
 }
+
