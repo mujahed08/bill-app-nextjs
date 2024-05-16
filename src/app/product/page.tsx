@@ -1,4 +1,5 @@
-'use client'
+"use client";
+
 
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -6,9 +7,16 @@ import Breadcrumb from './startwith';
 import { useRouter } from 'next/navigation';
 import { get_products } from '@/apis/product';
 
-const Product: React.FC = () => {
 
-  
+const Product: React.FC = () => {
+  const router = useRouter();
+
+  const editProduct = (id: number = 1) => {
+    router.push("/product/edit/1");
+  };
+
+  // Rememeber
+  const [products, setProducts] = useState<any[]>([]);
 
 
     const router = useRouter()
@@ -159,7 +167,9 @@ const Product: React.FC = () => {
                 </table>
             </div>
             
+
         </div>
+      </div>
     </div>
   );
 };
